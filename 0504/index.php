@@ -46,11 +46,47 @@
             <option value="SP">São Paulo</option>
             <option value="SE">Sergipe</option>
             <option value="TO">Tocantins</option>
-            <option value="EX">Estrangeiro</option>
-    </select><br>
-    E-mail:<input name="email" maxlength="30"><br>
+          
+        </select><br>
+        E-mail:<input name="email" maxlength="30"><br>
         <button type="submit">Salvar cliente</button>
-    </form>
+    </form> 
+
+    <?php
+    $arquivo = fopen("clientes.csv", "r");
+
+   // $conteudo = fgets($arquivo, filesize("clientes.csv"));
+
+   // echo $conteudo ;
+   while(! feof($arquivo)){
+    $linha =fgets($arquivo);
+
+
+    $registro = explode(".", $linha);
+
+    if ($registro =explode(",", $linha))
+    echo $registro[0] . " - ";
+    echo $registro[1] . " - ";
+    echo $registro[2] . " - ";
+    echo $registro[3] . " - ";
+    echo $registro[4] . "<br>";
+   
+   }
+    fclose($arquivo);
+    ?>
+    
+
+
+
+
+    <script>
+        <?php
+        $msg = $_GET["mensagem"]?? "";
+        if($msg == "salvo"){
+            echo "alert('Cliente salvo com sucesso')";
+        }
+        ?>
+    </script>
 
 
 </body>
